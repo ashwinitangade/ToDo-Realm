@@ -9,7 +9,8 @@
 import UIKit
 import RealmSwift
 
-class CategoryViewController: UITableViewController  {
+
+class CategoryViewController: SwipeTableViewController {
 
     var categories : Results<Category>?
     
@@ -19,15 +20,16 @@ class CategoryViewController: UITableViewController  {
         super.viewDidLoad()
         self.tableView.allowsMultipleSelectionDuringEditing = false
         
-
+        print(Realm.Configuration.defaultConfiguration.fileURL)
         loadCategories()
+        tableView.rowHeight = 80.0
     }
     
     //MARK: - TableView Datasource methods
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath)
 
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.textLabel?.text = categories?[indexPath.row].name ?? "No Categories added yet"
         return cell
     }
@@ -39,26 +41,6 @@ class CategoryViewController: UITableViewController  {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return categories?.count ?? 1
-    }
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == .delete) {
-            do {
-                try realm.write {
-                    if let category = categories?[indexPath.row] {
-                        realm.delete(category )
-                    }
-                }
-            }catch{
-                print("Error deleting category \(error)")
-            }
-
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-
-        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -124,4 +106,17 @@ class CategoryViewController: UITableViewController  {
         tableView.reloadData()
     }
 
+    override func updateDataModel(at indexPath: IndexPath) {
+        do {
+            try self.realm.write {
+                if let category = self.categories?[indexPath.row] {
+                    self.realm.delete(category.items)
+                    self.realm.delete(category)
+                }
+            }
+        }catch{
+            print("Error deleting category \(error)")
+        }
+    }
 }
+
