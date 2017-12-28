@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A3AA4EF1FFC81950457ABF52 /* Pods_ToDo_Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 633EC667393A498C963D6624 /* Pods_ToDo_Realm.framework */; };
 		CDBA7B4E1FF38C1900955D3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBA7B4D1FF38C1900955D3B /* AppDelegate.swift */; };
 		CDBA7B501FF38C1900955D3B /* ToDoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBA7B4F1FF38C1900955D3B /* ToDoListViewController.swift */; };
 		CDBA7B531FF38C1900955D3B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDBA7B511FF38C1900955D3B /* Main.storyboard */; };
@@ -17,7 +18,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CDBA7B4A1FF38C1900955D3B /* ToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		633EC667393A498C963D6624 /* Pods_ToDo_Realm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToDo_Realm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		83BA45F645C2179BFF2AA35B /* Pods-ToDo Realm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDo Realm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ToDo Realm/Pods-ToDo Realm.debug.xcconfig"; sourceTree = "<group>"; };
+		A0AFEFD2C31DBA61C7F94BE3 /* Pods-ToDo Realm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDo Realm.release.xcconfig"; path = "Pods/Target Support Files/Pods-ToDo Realm/Pods-ToDo Realm.release.xcconfig"; sourceTree = "<group>"; };
+		CDBA7B4A1FF38C1900955D3B /* ToDo Realm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ToDo Realm.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDBA7B4D1FF38C1900955D3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CDBA7B4F1FF38C1900955D3B /* ToDoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListViewController.swift; sourceTree = "<group>"; };
 		CDBA7B521FF38C1900955D3B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -33,24 +37,35 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3AA4EF1FFC81950457ABF52 /* Pods_ToDo_Realm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B59351FF04B6ACDEDC76AD05 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				633EC667393A498C963D6624 /* Pods_ToDo_Realm.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CDBA7B411FF38C1900955D3B = {
 			isa = PBXGroup;
 			children = (
 				CDBA7B4C1FF38C1900955D3B /* ToDo */,
 				CDBA7B4B1FF38C1900955D3B /* Products */,
+				F22C3C925ABAFA3D913C04A4 /* Pods */,
+				B59351FF04B6ACDEDC76AD05 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		CDBA7B4B1FF38C1900955D3B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CDBA7B4A1FF38C1900955D3B /* ToDo.app */,
+				CDBA7B4A1FF38C1900955D3B /* ToDo Realm.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -94,24 +109,36 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		F22C3C925ABAFA3D913C04A4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				83BA45F645C2179BFF2AA35B /* Pods-ToDo Realm.debug.xcconfig */,
+				A0AFEFD2C31DBA61C7F94BE3 /* Pods-ToDo Realm.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CDBA7B491FF38C1900955D3B /* ToDo */ = {
+		CDBA7B491FF38C1900955D3B /* ToDo Realm */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CDBA7B5C1FF38C1900955D3B /* Build configuration list for PBXNativeTarget "ToDo" */;
+			buildConfigurationList = CDBA7B5C1FF38C1900955D3B /* Build configuration list for PBXNativeTarget "ToDo Realm" */;
 			buildPhases = (
+				CCB55195ABE123CBA07D22E1 /* [CP] Check Pods Manifest.lock */,
 				CDBA7B461FF38C1900955D3B /* Sources */,
 				CDBA7B471FF38C1900955D3B /* Frameworks */,
 				CDBA7B481FF38C1900955D3B /* Resources */,
+				3178EB3D4D105632E1BFA0E4 /* [CP] Embed Pods Frameworks */,
+				ADD9641D6F008A7D4B9133DC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = ToDo;
+			name = "ToDo Realm";
 			productName = ToDo;
-			productReference = CDBA7B4A1FF38C1900955D3B /* ToDo.app */;
+			productReference = CDBA7B4A1FF38C1900955D3B /* ToDo Realm.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -130,7 +157,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CDBA7B451FF38C1900955D3B /* Build configuration list for PBXProject "ToDo" */;
+			buildConfigurationList = CDBA7B451FF38C1900955D3B /* Build configuration list for PBXProject "ToDo Realm" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -143,7 +170,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CDBA7B491FF38C1900955D3B /* ToDo */,
+				CDBA7B491FF38C1900955D3B /* ToDo Realm */,
 			);
 		};
 /* End PBXProject section */
@@ -160,6 +187,62 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3178EB3D4D105632E1BFA0E4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ToDo Realm/Pods-ToDo Realm-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ToDo Realm/Pods-ToDo Realm-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ADD9641D6F008A7D4B9133DC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ToDo Realm/Pods-ToDo Realm-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CCB55195ABE123CBA07D22E1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ToDo Realm-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CDBA7B461FF38C1900955D3B /* Sources */ = {
@@ -304,6 +387,7 @@
 		};
 		CDBA7B5D1FF38C1900955D3B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 83BA45F645C2179BFF2AA35B /* Pods-ToDo Realm.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -319,6 +403,7 @@
 		};
 		CDBA7B5E1FF38C1900955D3B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A0AFEFD2C31DBA61C7F94BE3 /* Pods-ToDo Realm.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -335,7 +420,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CDBA7B451FF38C1900955D3B /* Build configuration list for PBXProject "ToDo" */ = {
+		CDBA7B451FF38C1900955D3B /* Build configuration list for PBXProject "ToDo Realm" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CDBA7B5A1FF38C1900955D3B /* Debug */,
@@ -344,7 +429,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CDBA7B5C1FF38C1900955D3B /* Build configuration list for PBXNativeTarget "ToDo" */ = {
+		CDBA7B5C1FF38C1900955D3B /* Build configuration list for PBXNativeTarget "ToDo Realm" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CDBA7B5D1FF38C1900955D3B /* Debug */,
