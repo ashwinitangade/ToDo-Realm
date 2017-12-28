@@ -7,19 +7,19 @@
 //
 
 import UIKit
-import CoreData
+import RealmSwift
 
 class CategoryViewController: UITableViewController  {
 
-    var categoryArray : [Category] = [Category]()
+    var categories : Results<Category>?
     
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-
+    let realm = try! Realm()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.allowsMultipleSelectionDuringEditing = false
         
-        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+
         loadCategories()
     }
     
@@ -27,8 +27,8 @@ class CategoryViewController: UITableViewController  {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath)
-        let category = categoryArray[indexPath.row]
-        cell.textLabel?.text = category.name
+
+        cell.textLabel?.text = categories?[indexPath.row].name ?? "No Categories added yet"
         return cell
     }
     
@@ -38,7 +38,7 @@ class CategoryViewController: UITableViewController  {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categoryArray.count
+        return categories?.count ?? 1
     }
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
@@ -46,10 +46,18 @@ class CategoryViewController: UITableViewController  {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
-            context.delete(categoryArray[indexPath.row])
-            categoryArray.remove(at: indexPath.row)
+            do {
+                try realm.write {
+                    if let category = categories?[indexPath.row] {
+                        realm.delete(category )
+                    }
+                }
+            }catch{
+                print("Error deleting category \(error)")
+            }
+
             tableView.deleteRows(at: [indexPath], with: .automatic)
-            
+
         }
     }
     
@@ -64,7 +72,7 @@ class CategoryViewController: UITableViewController  {
             let destinationVC = segue.destination as! ToDoListViewController
             
             if let indexPath =  tableView.indexPathForSelectedRow {
-                destinationVC.selectedCategory = self.categoryArray[indexPath.row]
+                destinationVC.selectedCategory = self.categories?[indexPath.row]
             }
         }
     }
@@ -78,13 +86,11 @@ class CategoryViewController: UITableViewController  {
         let alert = UIAlertController(title: "Add new category", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "Add", style: .default) { (action) in
             
-            let newCategory = Category(context: self.context)
+            let newCategory = Category()
             newCategory.name = textField.text!
             
-            self.categoryArray.append(newCategory)
-            
-            self.saveCategories()
-            self.tableView.reloadData()
+            self.saveCategories(category: newCategory)
+
         }
         alert.addTextField { (alertTextField) in
             alertTextField.placeholder = "create new category"
@@ -96,10 +102,12 @@ class CategoryViewController: UITableViewController  {
    
     //MARK: - Data manipulation methods
     
-    func saveCategories(){
+    func saveCategories(category : Category){
         
         do {
-            try self.context.save()
+            try realm.write {
+                realm.add(category)
+            }
         } catch {
             
             let nserror = error as NSError
@@ -109,13 +117,10 @@ class CategoryViewController: UITableViewController  {
     }
 
     
-    func loadCategories(with request : NSFetchRequest<Category> = Category.fetchRequest())  {
+    func loadCategories()  {
+
+        categories =  realm.objects(Category.self)
         
-        do{
-            categoryArray = try context.fetch(request)
-        }catch{
-            print("Error fetching items \(error)")
-        }
         tableView.reloadData()
     }
 
