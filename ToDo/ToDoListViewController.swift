@@ -8,9 +8,11 @@
 
 import UIKit
 import RealmSwift
+import ChameleonFramework
 
 class ToDoListViewController: SwipeTableViewController {
 
+    @IBOutlet weak var searchBar: UISearchBar!
     var toDoItems : Results<Item>?
     let realm = try! Realm()
 
@@ -23,9 +25,18 @@ class ToDoListViewController: SwipeTableViewController {
         super.viewDidLoad()
         self.tableView.allowsMultipleSelectionDuringEditing = false
         tableView.rowHeight = 80.0
-        
+        tableView.separatorStyle = .none
+       
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        title = selectedCategory?.name
+        updateNavBar(withHexCode: selectedCategory!.bgColor)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        updateNavBar(withHexCode: "C68AC0")
+    }
     //MARK: - TableView Datasource methods
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -33,6 +44,11 @@ class ToDoListViewController: SwipeTableViewController {
         if let item = toDoItems?[indexPath.row] {
             cell.textLabel?.text = item.title
             cell.accessoryType = item.done ? .checkmark : .none
+            
+            if let color = UIColor(hexString: selectedCategory!.bgColor)?.darken(byPercentage: (CGFloat(indexPath.row)/CGFloat(toDoItems!.count))){
+                cell.backgroundColor = color
+                cell.textLabel?.textColor = UIColor(contrastingBlackOrWhiteColorOn: color, isFlat: true)
+            }
         }else{
             cell.textLabel?.text = "No Items Added"
         }
@@ -65,7 +81,17 @@ class ToDoListViewController: SwipeTableViewController {
         tableView.reloadData()
     }
     
-    
+    //MARK: -  Navigation bar update Methods
+    func updateNavBar(withHexCode colorHexCode : String)
+    {
+        guard let navBar = navigationController?.navigationBar else {fatalError("NavigationBar does not exist")}
+        guard let colorHex = UIColor(hexString: colorHexCode) else {fatalError()}
+        
+        navBar.barTintColor = colorHex
+        navBar.largeTitleTextAttributes = [NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue) : UIColor(contrastingBlackOrWhiteColorOn: colorHex, isFlat: true)]
+        navBar.tintColor = UIColor(contrastingBlackOrWhiteColorOn: colorHex, isFlat: true)
+        searchBar.barTintColor = colorHex
+    }
 
     //MARK: - Add new items
     
